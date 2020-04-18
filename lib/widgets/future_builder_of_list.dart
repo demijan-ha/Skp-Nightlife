@@ -60,6 +60,5 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
             return CircularProgressIndicator();
           },
         ));
-    ;
   }
 }
