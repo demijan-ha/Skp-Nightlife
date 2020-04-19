@@ -1,50 +1,71 @@
 import 'dart:convert';
 
-Clubs clubsFromJson(String str) => Clubs.fromJson(json.decode(str));
+import 'package:nightlife/repositories/repositories.dart';
 
-class Clubs {
-  final List<Club> data;
+class ClubList {
+  List<Club> clubs;
 
-  Clubs({
-    this.data,
-  });
+  ClubList({this.clubs});
 
-  factory Clubs.fromJson(Map<String, dynamic> json) => Clubs(
-        data: List<Club>.from(json["data"].map((x) => Club.fromJson(x))),
+  factory ClubList.fromJson(Map<String, dynamic> json) => ClubList(
+        clubs: List<Club>.from(json["data"].map((x) => Club.fromJson(x))),
       );
 }
 
 class Club {
-  final int id;
-  final String status;
-  final String clubName;
-  final Location location;
-  final String clubExplanation;
-  final int image;
-  final int avatar;
-  final String clubAddress;
+  int id;
+  String clubName;
+  String clubExplanation;
+  String clubAddress;
+  int imageID;
+  int avatarID;
+  ClubImage clubImage;
+  Location location;
 
   Club({
     this.id,
-    this.status,
     this.clubName,
-    this.location,
     this.clubExplanation,
-    this.image,
-    this.avatar,
     this.clubAddress,
+    this.location,
+    this.imageID,
+    this.avatarID,
+    this.clubImage,
   });
 
-  factory Club.fromJson(Map<String, dynamic> json) => Club(
-        id: json["id"],
-        status: json["status"],
-        clubName: json["club_name"],
-        location: Location.fromJson(json["location"]),
-        clubExplanation: json["club_explanation"],
-        image: json["image"],
-        avatar: json["avatar"],
-        clubAddress: json["club_address"],
-      );
+  factory Club.fromJson(Map<String, dynamic> json) {
+    final imageID = json["image"];
+
+    return Club(
+      id: json["id"],
+      clubName: json["club_name"],
+      location: Location.fromJson(json["location"]),
+      clubExplanation: json["club_explanation"],
+      imageID: json["image"],
+      avatarID: json["avatar"],
+      clubAddress: json["club_address"],
+    );
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+class ClubImage {
+  String url;
+  ClubImage({this.url});
+
+  static ClubImage fromJson(dynamic json) {
+    final data = json['data']['data'];
+    print(data);
+    return ClubImage(
+      url: data['full_url'] as String,
+    );
+  }
+}
+
+class ClubAvatar {
+  String avatarUrl;
+
+  ClubAvatar({this.avatarUrl});
 }
 
 class Location {
