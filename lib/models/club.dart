@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:nightlife/repositories/repositories.dart';
-
 class ClubList {
   List<Club> clubs;
 

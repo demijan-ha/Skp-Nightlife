@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:nightlife/models/models.dart';
 import 'package:nightlife/repositories/repositories.dart';
 import 'package:nightlife/const/const.dart';
-import 'package:nightlife/widgets/widgets.dart';
 
 class FutureBuilderOfList extends StatefulWidget {
   @override
@@ -20,8 +19,6 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
   }
 
   Widget build(BuildContext context) {
-    var club = clubList.clubs;
-
     _fetchListItems() async {
       var result = await ClubAPI().getClubs();
       var clubMap = json.decode(result);
@@ -43,7 +40,6 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
                 return Container(
                     child: ListView.builder(
                         itemCount: clubList.clubs.length,
-                        scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, int index) {
                           return Text('${clubList.clubs[index].clubName}');
                         }));
