@@ -41,7 +41,14 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
                     child: ListView.builder(
                         itemCount: clubList.clubs.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Text('${clubList.clubs[index].clubName}');
+                          return Card(
+                            child: ListTile(
+                              title: Text('${clubList.clubs[index].clubName}'),
+                              subtitle: Text(
+                                '${clubList.clubs[index].clubExplanation}',
+                              ),
+                            ),
+                          );
                         }));
               }
             }));
