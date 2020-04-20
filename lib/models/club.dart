@@ -1,36 +1,27 @@
-import 'package:nightlife/models/models.dart';
-
-class ClubList {
-  final List<Club> club;
-  ClubImageURL url;
-
-  ClubList({this.club, this.url});
-  factory ClubList.fromMap(Map<String, dynamic> json) => ClubList(
-        club: List<Club>.from(json["data"].map((x) => Club.fromMap(x))),
-      );
-}
-
 class Club {
   final int id;
   final String clubName;
   final Location location;
   final String clubExplanation;
+  final String clubAddress;
   final int imageID;
   final int avatarID;
-  final String clubAddress;
+  final String imageURL;
+  final String avatarURL;
 
   Club({
     this.id,
     this.clubName,
     this.location,
     this.clubExplanation,
+    this.clubAddress,
     this.imageID,
     this.avatarID,
-    this.clubAddress,
-    url,
+    this.imageURL,
+    this.avatarURL,
   });
 
-  factory Club.fromMap(Map<String, dynamic> json) {
+  factory Club.fromJson(Map<String, dynamic> json) {
     return new Club(
       id: json["id"],
       clubName: json["club_name"],
@@ -39,6 +30,13 @@ class Club {
       imageID: json["image"],
       avatarID: json["avatar"],
       clubAddress: json["club_address"],
+    );
+  }
+
+  Club addImagesURL(String imageURL, String avatarURL) {
+    return Club(
+      imageURL: imageURL,
+      avatarURL: avatarURL,
     );
   }
 }
@@ -56,9 +54,4 @@ class Location {
         lat: json["lat"].toDouble(),
         lng: json["lng"].toDouble(),
       );
-}
-
-class ClubImageURL {
-  String url;
-  ClubImageURL({this.url});
 }

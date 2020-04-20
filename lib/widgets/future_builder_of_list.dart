@@ -5,6 +5,7 @@ import 'package:nightlife/repositories/repositories.dart';
 import 'package:nightlife/const/const.dart';
 import 'package:nightlife/services/auth.dart';
 import 'package:nightlife/const/loading.dart';
+import 'package:http/http.dart' as http;
 
 class FutureBuilderOfList extends StatefulWidget {
   @override
@@ -12,8 +13,6 @@ class FutureBuilderOfList extends StatefulWidget {
 }
 
 class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
-  ClubList clubList = ClubList();
-
   @override
   void initState() {
     super.initState();
@@ -21,7 +20,6 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
 
   Widget build(BuildContext context) {
     bool loading = false;
-    _fetchListItems() async => {clubList = await Worker().getClubs()};
 
     return loading
         ? Loading()
@@ -48,24 +46,14 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
                 ),
               ],
             ),
-            body: FutureBuilder(
-                future: _fetchListItems(),
+            body: FutureBuilder<List<Club>>(
+                future: Worker().fetchClubs(http.Client()),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Container(
-                        child: ListView.builder(
-                            itemCount: clubList.club.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Card(
-                                child: ListTile(
-                                  title:
-                                      Text('${clubList.club[index].clubName}'),
-                                  subtitle: Text(
-                                    '${clubList.club[index].clubExplanation}',
-                                  ),
-                                ),
-                              );
-                            }));
+                        child: ListViewForClubs(
+                      clubs: snapshot.data,
+                    ));
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }
@@ -78,5 +66,26 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
                     ),
                   );
                 }));
+  }
+}
+
+class ListViewForClubs extends StatelessWidget {
+  final List<Club> clubs;
+  ListViewForClubs({this.clubs});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: clubs.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: ListTile(
+              title: Text('${clubs[index].clubName}'),
+              subtitle: Text(
+                '${clubs[index].clubExplanation}',
+              ),
+            ),
+          );
+        });
   }
 }

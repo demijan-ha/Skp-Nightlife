@@ -1,4 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:nightlife/models/club.dart';
 import 'package:http/http.dart' as http;
 
@@ -7,14 +10,20 @@ class Worker {
   static const String clubUrl = '/items/clubs';
   static const String fileUrl = '/files/';
 
-  Future<dynamic> getClubs() async {
-    final response = await http.get('$baseUrl$clubUrl');
+  Future<List<Club>> fetchClubs(http.Client client) async {
+    final response = await client.get('$baseUrl$clubUrl');
+    print('First response: ${response.body}');
+    // Use the compute function to run parsePhotos in a separate isolate.
+    return parseClubs(response.body);
+  }
 
-    if (response.statusCode == 200) {
-      return ClubList.fromMap(json.decode(response.body));
-    } else {
-      throw Exception('Failed to load clubs!');
-    }
+// A function that converts a response body into a List<Photo>.
+  List<Club> parseClubs(String responseBody) {
+    final parsed = jsonDecode(responseBody);
+    List<Club> fromMap(Map<String, dynamic> json) =>
+        List<Club>.from(json["data"].map((x) => Club.fromJson(x)));
+
+    return fromMap(parsed);
   }
 
   Future<String> fetchImage(int imageID) async {
