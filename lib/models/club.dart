@@ -21,7 +21,9 @@ class Club {
     this.avatarURL,
   });
 
-  factory Club.fromJson(Map<String, dynamic> json) {
+  // ignore: non_constant_identifier_names
+  factory Club.fromJson(Map<String, dynamic> json,
+      [String imageURL, String avatarURL]) {
     return new Club(
       id: json["id"],
       clubName: json["club_name"],
@@ -30,6 +32,8 @@ class Club {
       imageID: json["image"],
       avatarID: json["avatar"],
       clubAddress: json["club_address"],
+      imageURL: imageURL,
+      avatarURL: avatarURL,
     );
   }
 
@@ -37,6 +41,20 @@ class Club {
     return Club(
       imageURL: imageURL,
       avatarURL: avatarURL,
+    );
+  }
+}
+
+class ClubsImages {
+  int id;
+  String finalURL;
+
+  ClubsImages({this.id, this.finalURL});
+
+  factory ClubsImages.fromJson(Map<String, dynamic> json) {
+    return ClubsImages(
+      id: json['id'],
+      finalURL: json['data']['full_url'],
     );
   }
 }
