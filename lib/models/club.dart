@@ -1,67 +1,46 @@
+import 'package:nightlife/models/models.dart';
+
 class ClubList {
-  List<Club> clubs;
+  final List<Club> club;
+  ClubImageURL url;
 
-  ClubList({this.clubs});
-
-  factory ClubList.fromJson(Map<String, dynamic> json) => ClubList(
-        clubs: List<Club>.from(json["data"].map((x) => Club.fromJson(x))),
+  ClubList({this.club, this.url});
+  factory ClubList.fromMap(Map<String, dynamic> json) => ClubList(
+        club: List<Club>.from(json["data"].map((x) => Club.fromMap(x))),
       );
 }
 
 class Club {
-  int id;
-  String clubName;
-  String clubExplanation;
-  String clubAddress;
-  int imageID;
-  int avatarID;
-  ClubImage clubImage;
-  Location location;
+  final int id;
+  final String clubName;
+  final Location location;
+  final String clubExplanation;
+  final int imageID;
+  final int avatarID;
+  final String clubAddress;
 
   Club({
     this.id,
     this.clubName,
-    this.clubExplanation,
-    this.clubAddress,
     this.location,
+    this.clubExplanation,
     this.imageID,
     this.avatarID,
-    this.clubImage,
+    this.clubAddress,
+    url,
   });
 
-  factory Club.fromJson(Map<String, dynamic> json) {
-    final imageID = json["image"];
-
-    return Club(
+  factory Club.fromMap(Map<String, dynamic> json) {
+    return new Club(
       id: json["id"],
       clubName: json["club_name"],
-      location: Location.fromJson(json["location"]),
+      location: Location.fromMap(json["location"]),
       clubExplanation: json["club_explanation"],
       imageID: json["image"],
       avatarID: json["avatar"],
       clubAddress: json["club_address"],
     );
   }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-class ClubImage {
-  String url;
-  ClubImage({this.url});
-
-  static ClubImage fromJson(dynamic json) {
-    final data = json['data']['data'];
-    print(data);
-    return ClubImage(
-      url: data['full_url'] as String,
-    );
-  }
-}
-
-class ClubAvatar {
-  String avatarUrl;
-
-  ClubAvatar({this.avatarUrl});
 }
 
 class Location {
@@ -73,8 +52,13 @@ class Location {
     this.lng,
   });
 
-  factory Location.fromJson(Map<String, dynamic> json) => Location(
+  factory Location.fromMap(Map<String, dynamic> json) => Location(
         lat: json["lat"].toDouble(),
         lng: json["lng"].toDouble(),
       );
+}
+
+class ClubImageURL {
+  String url;
+  ClubImageURL({this.url});
 }

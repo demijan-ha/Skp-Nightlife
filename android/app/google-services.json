@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "5873317934",
+    "firebase_url": "https://skopje-nightlife.firebaseio.com",
+    "project_id": "skopje-nightlife",
+    "storage_bucket": "skopje-nightlife.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5873317934:android:8b2173da1807fa9865c7bf",
+        "android_client_info": {
+          "package_name": "mk.blink.nightlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5873317934-udu3qact3tkursujn0bologqe1rtu5im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB26SN5_PXKhjOjmdVuSmVh10Z8hnjxW3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5873317934-udu3qact3tkursujn0bologqe1rtu5im.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

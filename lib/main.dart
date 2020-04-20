@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:nightlife/widgets/widgets.dart';
-import 'package:nightlife/const/const.dart';
+import 'package:provider/provider.dart';
+import 'package:nightlife/models/models.dart';
+import 'package:nightlife/wrapper.dart';
+import 'package:nightlife/services/auth.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle,
-      home: MyHomePage(),
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        home: Wrapper(),
+      ),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilderOfList();
   }
 }
