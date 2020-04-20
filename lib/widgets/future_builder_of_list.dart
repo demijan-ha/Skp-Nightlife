@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:nightlife/models/models.dart';
 import 'package:nightlife/repositories/repositories.dart';
+import 'package:nightlife/widgets/widgets.dart';
 import 'package:nightlife/const/const.dart';
 import 'package:nightlife/services/auth.dart';
 import 'package:nightlife/const/loading.dart';
-import 'package:http/http.dart' as http;
 
 class FutureBuilderOfList extends StatefulWidget {
   @override
@@ -70,43 +70,5 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
                     ),
                   );
                 }));
-  }
-}
-
-class ListViewForClubs extends StatelessWidget {
-  final List<Club> clubs;
-  final List<ClubsImages> clubsImages;
-  ListViewForClubs({this.clubs, this.clubsImages});
-
-  Image _getImagesURL(imageID) {
-    var result = clubsImages.firstWhere(
-        (clubsImages) => clubsImages.id == imageID,
-        orElse: () => null);
-    var url = result.finalURL;
-
-    return Image(
-      image: NetworkImage(url),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print(_getImagesURL(2));
-
-    return ListView.builder(
-        itemCount: clubs.length,
-        itemBuilder: (BuildContext context, int index) {
-          var i = clubs[index].imageID;
-          return Card(
-            child: ListTile(
-              leading: _getImagesURL(i),
-              title:
-                  Text('${clubs[index].clubName} and ${clubs[index].imageID}'),
-              subtitle: Text(
-                '${clubs[index].clubExplanation}',
-              ),
-            ),
-          );
-        });
   }
 }
