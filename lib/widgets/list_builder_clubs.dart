@@ -26,8 +26,7 @@ class ListViewForClubs extends StatelessWidget {
           return Card(
             child: ListTile(
               leading: _getImagesURL(i),
-              title:
-                  Text('${clubs[index].clubName} and ${clubs[index].imageID}'),
+              title: Text('${clubs[index].clubName}'),
               subtitle: Text(
                 '${clubs[index].clubExplanation}',
               ),
