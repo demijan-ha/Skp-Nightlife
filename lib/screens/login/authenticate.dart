@@ -1,5 +1,5 @@
-import 'package:nightlife/screens/sign_in.dart';
-import 'package:nightlife/screens/register.dart';
+import 'package:nightlife/screens/login/sign_in.dart';
+import 'package:nightlife/screens/login/register.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {
@@ -16,7 +16,7 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {
-      return SignIn(toggleView: toggleView);
+      return SignInPage(toggleView: toggleView);
     } else {
       return Register(toggleView: toggleView);
     }

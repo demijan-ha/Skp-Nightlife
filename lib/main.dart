@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nightlife/const/const.dart';
 import 'package:provider/provider.dart';
 import 'package:nightlife/models/models.dart';
 import 'package:nightlife/wrapper.dart';
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
+        title: 'Skopje Nightlife',
         home: Wrapper(),
       ),
     );

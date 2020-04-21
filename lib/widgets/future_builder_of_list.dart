@@ -28,7 +28,7 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
               backgroundColor: AppColors.PRIMARY_APPBAR_COLOR,
               title: Text(
                 appTitle,
-                style: textStyleWhite,
+                style: whiteTextStyle,
               ),
               actions: <Widget>[
                 FlatButton.icon(
@@ -41,7 +41,7 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
                   ),
                   label: Text(
                     'Sign out',
-                    style: textStyleWhite,
+                    style: whiteTextStyle,
                   ),
                 ),
               ],
@@ -64,7 +64,7 @@ class _FutureBuilderOfListState extends State<FutureBuilderOfList> {
                   return Center(
                     child: Container(
                       child: SpinKitWave(
-                        color: AppColors.PRIMARY_COLOR,
+                        color: AppColors.PRIMARY_ACCENT_COLOR,
                         size: 50.0,
                       ),
                     ),
