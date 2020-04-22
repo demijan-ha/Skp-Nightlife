@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:nightlife/models/models.dart';
 import 'package:nightlife/screens/login/authenticate.dart';
-import 'package:nightlife/screens/home.dart';
+import 'package:nightlife/screens/home/home.dart';
 
 class Wrapper extends StatelessWidget {
   @override
