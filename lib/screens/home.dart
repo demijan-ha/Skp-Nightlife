@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:nightlife/widgets/widgets.dart';
 import 'package:nightlife/models/models.dart';
-import 'package:nightlife/repositories/repositories.dart';
 import 'package:nightlife/services/auth.dart';
 import 'package:nightlife/services/db.dart';
 

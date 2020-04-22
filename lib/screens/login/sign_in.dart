@@ -22,47 +22,62 @@ class _SignInPageState extends State<SignInPage> {
         ),
         child: Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-            colors: <Color>[
-              Color.fromRGBO(195, 20, 50, 0.6),
-              Color.fromRGBO(36, 11, 54, 0.7),
-            ],
-            stops: [0.2, 1.0],
-            begin: FractionalOffset(0.0, 0.0),
-            end: FractionalOffset(0.0, 1.0),
-          )),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            gradient: LinearGradient(
+              colors: <Color>[
+                Color.fromRGBO(195, 20, 50, 0.6),
+                Color.fromRGBO(36, 11, 54, 0.7),
+              ],
+              stops: [0.2, 1.0],
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(0.0, 1.0),
+            ),
+          ),
+          child: ListView(
+            padding: const EdgeInsets.all(0.0),
             children: <Widget>[
-              Diamond(image: diamond),
-              SizedBox(
-                height: 140.0,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                child: LoginForm(),
-              ),
-              SizedBox(
-                height: 40.0,
-              ),
-              FlatButton(
-                onPressed: () {
-                  widget.toggleView();
-                },
-                child: Text(
-                  "Don't have an account? Sign Up",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: true,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 0.5,
-                      color: Colors.white,
-                      fontSize: 12.0),
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
+              Stack(
+                alignment: AlignmentDirectional.bottomCenter,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 50.0,
+                      ),
+                      Diamond(image: diamond),
+                      SizedBox(
+                        height: 150.0,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                        child: LoginForm(),
+                      ),
+                      SizedBox(
+                        height: 40.0,
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          widget.toggleView();
+                        },
+                        child: Text(
+                          "Don't have an account? Sign Up",
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: 0.5,
+                              color: Colors.white,
+                              fontSize: 12.0),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
