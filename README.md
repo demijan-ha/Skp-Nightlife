@@ -1,10 +1,11 @@
 # Skopje Nightlife
 
-Small dev project for Blink Marketing & Macedonia, to showcase app design and rapid development, through use of modular code. The app is  integrated with a headless content management system for easy management of the app's content. Sign in and account management is done through Google Firebase Authentication.
+Small dev project for Blink Marketing & Media, to showcase app design and rapid development, through use of modular code in Google's Flutter SDK. The app is  integrated with a headless content management system for easy management of the app's content. Sign in and account management is done through Google Firebase Authentication.
 
 -----------------------
 
-TODO:
+##TODO:
+
 1. Finish animations
 2. Categories that work
 3. Social share club screen
@@ -13,3 +14,8 @@ TODO:
 6. Call to club to reserve / buy tickets
 7. Screen for events at locations
 
+##Screenshots:
+
+![Image of Login screen](https://raw.githubusercontent.com/demijan-ha/Skp-Nightlife/master/assets/screenshots/Screenshot_1587593899.png)
+![Image of Home screen](https://raw.githubusercontent.com/demijan-ha/Skp-Nightlife/master/assets/screenshots/Screenshot_1587593934.png)
+![Image of Single club screen](https://raw.githubusercontent.com/demijan-ha/Skp-Nightlife/master/assets/screenshots/Screenshot_1587593941.png)
