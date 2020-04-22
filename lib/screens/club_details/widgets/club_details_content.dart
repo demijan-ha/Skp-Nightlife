@@ -9,10 +9,7 @@ class ClubDetailsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    return Padding(
-      padding: const EdgeInsets.all(30),
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -20,7 +17,7 @@ class ClubDetailsContent extends StatelessWidget {
             height: 70,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 35),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -36,37 +33,85 @@ class ClubDetailsContent extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 20,
           ),
-          Text(
-            club.clubName,
-            style: eventWhiteTitleTextStyle,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FittedBox(
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.location_on, color: AppColors.WHITE),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  club.clubAddress,
-                  style: eventLocationTextStyle,
-                ),
-              ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Text(
+              club.clubName,
+              style: eventWhiteTitleTextStyle,
             ),
           ),
           SizedBox(
             height: 10,
           ),
-          StarDisplay(
-            value: club.rating,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: FittedBox(
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.location_on, color: AppColors.WHITE),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    club.clubAddress,
+                    style: eventLocationTextStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 30),
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: StarDisplay(
+              value: club.rating,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Text(
+              'Music genres',
+              style: eventLocationTextStyle,
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              children: <Widget>[
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(children: <Widget>[
+                    for (var i = 0; i < club.genre.length; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 5),
+                        child: Chip(
+                          label: Text(
+                            club.genre[i],
+                            style: whiteTextStyle,
+                          ),
+                          backgroundColor: AppColors.BACKGROUND_TOP_COLOR,
+                        ),
+                      ),
+                  ]),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
             child: Column(
               children: <Widget>[
                 Text(
@@ -74,7 +119,7 @@ class ClubDetailsContent extends StatelessWidget {
                   style: punchLine1TextStyle,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Text(
                   club.clubDescription,
