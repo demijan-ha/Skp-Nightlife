@@ -1,11 +1,18 @@
 class Club {
-  final int id;
-  final String clubName;
-  final Location location;
-  final String clubExplanation;
-  final String clubAddress;
-  final int imageID;
-  final int avatarID;
+  int id;
+  String clubName;
+  Location location;
+  int imageID;
+  int avatarID;
+  String clubAddress;
+  String clubDescription;
+  String clubPunchline;
+  List<String> genre;
+  int rating;
+  List<String> workingDays;
+  String openHours;
+  String closeHours;
+  int telephone;
   final String imageURL;
   final String avatarURL;
 
@@ -13,10 +20,17 @@ class Club {
     this.id,
     this.clubName,
     this.location,
-    this.clubExplanation,
-    this.clubAddress,
     this.imageID,
     this.avatarID,
+    this.clubAddress,
+    this.clubDescription,
+    this.clubPunchline,
+    this.genre,
+    this.rating,
+    this.workingDays,
+    this.openHours,
+    this.closeHours,
+    this.telephone,
     this.imageURL,
     this.avatarURL,
   });
@@ -27,11 +41,18 @@ class Club {
     return new Club(
       id: json["id"],
       clubName: json["club_name"],
-      location: Location.fromMap(json["location"]),
-      clubExplanation: json["club_explanation"],
+      location: Location.fromJson(json["location"]),
       imageID: json["image"],
       avatarID: json["avatar"],
       clubAddress: json["club_address"],
+      clubDescription: json["club_description"],
+      clubPunchline: json["club_punchline"],
+      genre: List<String>.from(json["genre"].map((x) => x)),
+      rating: json["rating"],
+      workingDays: List<String>.from(json["working_days"].map((x) => x)),
+      openHours: json["open_hours"],
+      closeHours: json["close_hours"],
+      telephone: json["telephone"],
       imageURL: imageURL,
       avatarURL: avatarURL,
     );
@@ -68,7 +89,7 @@ class Location {
     this.lng,
   });
 
-  factory Location.fromMap(Map<String, dynamic> json) => Location(
+  factory Location.fromJson(Map<String, dynamic> json) => Location(
         lat: json["lat"].toDouble(),
         lng: json["lng"].toDouble(),
       );
