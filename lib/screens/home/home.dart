@@ -17,90 +17,88 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<Club>>.value(
-      // TODO: Change this to the DB Service that gets all Clubs
-//      value: DatabaseService(),
-      value: null,
-      child: ChangeNotifierProvider<AppState>(
-        create: (_) => AppState(),
-        child: Scaffold(
-          backgroundColor: AppColors.BACKGROUND_COLOR,
-          body: Stack(
-            children: <Widget>[
-              HomePageBackground(
-                  screenHeight: MediaQuery.of(context).size.height),
-              SafeArea(
-                child: SingleChildScrollView(
-                  physics: ScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32.0),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                              AppText().homeScreenTopText,
-                              style: fadedTextStyle,
-                            ),
-                            Spacer(),
-                            // TODO: MAKE IN A FLATBUTTON.ICON
-                            Icon(
+    return ChangeNotifierProvider<AppState>(
+      create: (_) => AppState(),
+      child: Scaffold(
+        backgroundColor: AppColors.BACKGROUND_COLOR,
+        body: Stack(
+          children: <Widget>[
+            HomePageBackground(
+                screenHeight: MediaQuery.of(context).size.height),
+            SafeArea(
+              child: SingleChildScrollView(
+                physics: ScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32.0),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            AppText().homeScreenTopText,
+                            style: fadedTextStyle,
+                          ),
+                          Spacer(),
+                          // TODO: MAKE IN A FLATBUTTON.ICON
+                          InkWell(
+                            onTap: () => _auth.signOut(),
+                            child: Icon(
                               Icons.person_outline,
                               color: AppColors.WHITE60_TEXT_COLOR,
                               size: 30,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32.0),
-                        child: Text(
-                          AppText().homeScreenWelcomeText,
-                          style: whiteHeadingTextStyle,
-                        ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32.0),
+                      child: Text(
+                        AppText().homeScreenWelcomeText,
+                        style: whiteHeadingTextStyle,
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 20.0),
-                        child: Consumer<AppState>(
-                          builder: (context, appState, _) =>
-                              SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: <Widget>[
-                                for (final category in categories)
-                                  CategoryWidget(category: category)
-                              ],
-                            ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 20.0),
+                      child: Consumer<AppState>(
+                        builder: (context, appState, _) =>
+                            SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: <Widget>[
+                              for (final category in categories)
+                                CategoryWidget(category: category)
+                            ],
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 0.0),
-                        child: FutureBuilder(
-                            future: Future.wait([
-                              Worker().fetchClubs(http.Client()),
-                              Worker().fetchImages(http.Client()),
-                            ]),
-                            builder: (context, AsyncSnapshot snapshot) {
-                              if (snapshot.hasData) {
-                                return Container(
-                                    child: ListViewForClubs(
-                                  clubs: snapshot.data[0],
-                                  clubsImages: snapshot.data[1],
-                                ));
-                              }
-                              return Text("${snapshot.error}");
-                            }),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 0.0),
+                      child: FutureBuilder(
+                          future: Future.wait([
+                            Worker().fetchClubs(http.Client()),
+                            Worker().fetchImages(http.Client()),
+                          ]),
+                          builder: (context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              return Container(
+                                  child: ListViewForClubs(
+                                clubs: snapshot.data[0],
+                                clubsImages: snapshot.data[1],
+                              ));
+                            }
+                            return Text("${snapshot.error}");
+                          }),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
