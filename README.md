@@ -1,16 +1,15 @@
-# nightlife
+# Skopje Nightlife
 
-A new Flutter application.
+Small dev project for Blink Marketing & Macedonia, to showcase app design and rapid development, through use of modular code. The app is  integrated with a headless content management system for easy management of the app's content. Sign in and account management is done through Google Firebase Authentication.
 
-## Getting Started
+-----------------------
 
-This project is a starting point for a Flutter application.
+TODO:
+1. Finish animations
+2. Categories that work
+3. Social share club screen
+4. Social media sign-in
+5. Google Maps integration
+6. Call to club to reserve / buy tickets
+7. Screen for events at locations
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
